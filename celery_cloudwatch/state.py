@@ -114,3 +114,16 @@ class State(object):
                     del self.running_tasks[event['uuid']]
 
                 self.totals[task_type]['failed'] += 1
+
+
+    def task_revoked(self, event):
+        with self._mutex:
+            if event['uuid'] in self.task_types:
+                task_type = self.task_types[event['uuid']]
+                del self.task_types[event['uuid']]
+                if event['uuid'] in self.waiting_tasks:
+                    del self.waiting_tasks[event['uuid']]
+                    if event['expired']:
+                        self.totals[task_type]['expired'] += 1
+                if event['uuid'] in self.running_tasks:
+                    del self.running_tasks[event['uuid']]

@@ -30,6 +30,7 @@ class TaskMonitor(object):
                 'task-sent': self.proxy_event('task-sent',state.task_sent),
                 'task-started': self.proxy_event('task-started', state.task_started),
                 'task-succeeded': self.proxy_event('task-succeeded', state.task_succeeded),
+                'task-revoked': self.proxy_event('task-revoked', state.task_revoked),
                 'task-failed': self.proxy_event('task-failed', state.task_failed)
             })
             try:
