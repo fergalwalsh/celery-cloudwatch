@@ -8,7 +8,7 @@ import json
 class CloudWatchCamera(Camera):
 
     clear_after = True
-    _event_names = ('waiting', 'running', 'completed', 'failed', 'expired')
+    _event_names = ('waiting', 'running', 'completed', 'failed', 'expired', 'sent', 'started')
 
     def __init__(self, state, config, aws_connection=None):
         super(CloudWatchCamera, self).__init__(state, config)

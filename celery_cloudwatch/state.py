@@ -68,6 +68,7 @@ class State(object):
             # increment totals for this task type
             self.totals[event['name']]['waiting'] += 1
             self.task_types[event['uuid']] = event['name']
+            self.totals[event['name']]['sent'] += 1
 
     def task_started(self, event):
         with self._mutex:
@@ -87,6 +88,9 @@ class State(object):
                     'q': queue
                 }
                 self.totals[task_type]['running'] += 1
+                self.totals[task_type]['started'] += 1
+
+
 
     def task_succeeded(self, event):
         with self._mutex:
